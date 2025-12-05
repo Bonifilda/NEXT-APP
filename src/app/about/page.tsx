@@ -26,20 +26,20 @@ export default async function About() {
   
   return (
     <div className="max-w-6xl mx-auto p-8">
-      <h1 className="text-4xl font-bold mb-6">About (SSR)</h1>
-      <div className="bg-gray-50 p-6 rounded-lg">
-        <h2 className="text-2xl font-semibold mb-4">Author Information</h2>
-        <div className="space-y-2">
+      <h1 className="text-4xl text-black font-bold mb-6">About (SSR)</h1>
+      
+        <h2 className="text-2xl  text-black font-semibold mb-4">Author Information</h2>
+        <div className="space-y-2 text-black">
           <p><strong>Name:</strong> {author.name}</p>
           <p><strong>Email:</strong> {author.email}</p>
           <p><strong>Phone:</strong> {author.phone}</p>
           <p><strong>Website:</strong> {author.website}</p>
           <p><strong>Company:</strong> {author.company.name}</p>
         </div>
-        <p className="text-sm text-gray-500 mt-4">
+        <p className="text-sm text-black mt-4">
           This data is fetched using Server-Side Rendering (SSR)
         </p>
       </div>
-    </div>
+    
   )
 }

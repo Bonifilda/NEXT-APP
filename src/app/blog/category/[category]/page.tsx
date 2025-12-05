@@ -23,7 +23,7 @@ const categoryTitles: { [key: string]: string } = {
 async function getCategoryPosts(category: string): Promise<Post[]> {
   try {
     const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
-      next: { revalidate: 3600 } // Cache for 1 hour
+      next: { revalidate: 3600 } 
     })
     
     if (!res.ok) {

@@ -17,9 +17,9 @@ export default function CurrentTime() {
   }, [])
 
   return (
-    <div className="bg-blue-50 p-4 rounded-lg">
+    <div>
       <h3 className="text-lg font-semibold mb-2">Current Time (CSR)</h3>
-      <p className="text-blue-600 font-mono">{time}</p>
+      <p className="text-black font-mono">{time}</p>
     </div>
   )
 }
