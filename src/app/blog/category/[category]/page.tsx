@@ -21,16 +21,23 @@ const categoryTitles: { [key: string]: string } = {
 }
 
 async function getCategoryPosts(category: string): Promise<Post[]> {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-  
-  if (!res.ok) {
+  try {
+    const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      next: { revalidate: 3600 } // Cache for 1 hour
+    })
+    
+    if (!res.ok) {
+      return []
+    }
+    
+    const allPosts: Post[] = await res.json()
+    const categoryPostIds = categoryMapping[category] || []
+    
+    return allPosts.filter(post => categoryPostIds.includes(post.id))
+  } catch (error) {
+    console.error('Error fetching posts:', error)
     return []
   }
-  
-  const allPosts: Post[] = await res.json()
-  const categoryPostIds = categoryMapping[category] || []
-  
-  return allPosts.filter(post => categoryPostIds.includes(post.id))
 }
 
 export async function generateStaticParams() {
@@ -41,9 +48,28 @@ export async function generateStaticParams() {
   ]
 }
 
-export default async function CategoryPage({ params }: { params: { category: string } }) {
-  const posts = await getCategoryPosts(params.category)
-  const categoryTitle = categoryTitles[params.category] || params.category
+export default async function CategoryPage({ 
+  params 
+}: { 
+  params: Promise<{ category: string }> 
+}) {
+  const { category } = await params
+  
+  // Validate category
+  if (!categoryMapping[category]) {
+    return (
+      <div className="text-center py-8">
+        <h1 className="text-2xl font-bold text-red-600 mb-4">Invalid Category</h1>
+        <p className="text-gray-500 mb-4">The category "{category}" does not exist.</p>
+        <Link href="/blog" className="text-blue-600 hover:underline">
+          ← Back to Blog
+        </Link>
+      </div>
+    )
+  }
+  
+  const posts = await getCategoryPosts(category)
+  const categoryTitle = categoryTitles[category]
 
   return (
     <div>
