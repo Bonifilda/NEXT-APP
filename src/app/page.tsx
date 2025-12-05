@@ -1,11 +1,13 @@
-import Image from "next/image";
+import CurrentTime from './components/CurrentTime'
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-  
-      </main>
+    <div className="max-w-6xl mx-auto p-8">
+      <h1 className="text-4xl font-bold mb-6">Welcome to Next.js Assignment</h1>
+      <p className="text-lg mb-8 text-gray-600">
+        This project demonstrates various Next.js rendering techniques including CSR, SSR, SSG, and ISR.
+      </p>
+      <CurrentTime />
     </div>
-  );
+  )
 }
