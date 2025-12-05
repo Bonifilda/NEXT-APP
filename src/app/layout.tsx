@@ -18,7 +18,7 @@ export default function RootLayout({
         <div className="min-h-screen flex flex-col">
           <header className="bg-blue-600 text-white p-4">
             <nav className="max-w-6xl mx-auto flex justify-between items-center">
-              <h1 className="text-xl font-bold">Next.js Assignment</h1>
+              <h1 className="text-xl font-bold">Next.js work</h1>
               <div className="space-x-4">
                 <Link href="/" className="hover:underline">Home</Link>
                 <Link href="/about" className="hover:underline">About</Link>
