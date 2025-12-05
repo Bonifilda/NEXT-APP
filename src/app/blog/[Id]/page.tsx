@@ -61,12 +61,12 @@ export default async function BlogPost({ params }: { params: { id: string } }) {
   if (!post) {
     return (
       <div>
-        <div className="bg-red-50 border border-red-200 rounded-lg p-8 text-center">
-          <h1 className="text-2xl font-bold text-red-600 mb-4">Post Not Found</h1>
-          <p className="text-red-500 mb-6">The requested blog post could not be found.</p>
+        <div className="bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700 rounded-lg p-8 text-center">
+          <h1 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">Post Not Found</h1>
+          <p className="text-red-500 dark:text-red-300 mb-6">The requested blog post could not be found.</p>
           <Link 
             href="/blog" 
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="bg-blue-600 dark:bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-700 dark:hover:bg-blue-600"
           >
             ← Back to Blog
           </Link>
@@ -79,10 +79,10 @@ export default async function BlogPost({ params }: { params: { id: string } }) {
   
   return (
     <div>
-      <article className="bg-white rounded-lg p-8 shadow-sm">
-        <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+      <article className="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-sm">
+        <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-gray-100">{post.title}</h1>
         
-        <div className="flex items-center mb-6 text-gray-600">
+        <div className="flex items-center mb-6 text-gray-600 dark:text-gray-400">
           <span>By {author?.name || 'Unknown Author'}</span>
           {author?.email && (
             <>
@@ -93,11 +93,11 @@ export default async function BlogPost({ params }: { params: { id: string } }) {
         </div>
         
         <div className="prose max-w-none">
-          <p className="text-lg leading-relaxed">{post.body}</p>
+          <p className="text-lg leading-relaxed text-gray-700 dark:text-gray-300">{post.body}</p>
         </div>
         
-        <div className="mt-8 p-4 bg-blue-50 rounded-lg">
-          <p className="text-sm text-blue-600">
+        <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
+          <p className="text-sm text-blue-600 dark:text-blue-300">
             This page uses Incremental Static Regeneration (ISR) - content is revalidated every 60 seconds.
           </p>
         </div>
@@ -106,7 +106,7 @@ export default async function BlogPost({ params }: { params: { id: string } }) {
       <div className="mt-6">
         <Link 
           href="/blog" 
-          className="text-blue-600 hover:underline"
+          className="text-blue-600 dark:text-blue-400 hover:underline"
         >
           ← Back to Blog
         </Link>

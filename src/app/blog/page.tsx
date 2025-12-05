@@ -15,9 +15,9 @@ const getPostCategory = (id: number): string => {
 }
 
 const categoryColors: { [key: string]: string } = {
-  tech: 'bg-blue-100 text-blue-800',
-  lifestyle: 'bg-green-100 text-green-800',
-  education: 'bg-purple-100 text-purple-800'
+  tech: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200',
+  lifestyle: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+  education: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200'
 }
 
 async function getPosts(): Promise<Post[]> {
@@ -35,34 +35,34 @@ export default async function Blog() {
   
   return (
     <div>
-      <h1 className="text-4xl text-black font-bold mb-6">Blog Posts (SSG)</h1>
-      <p className="text-black mb-8">
+      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-gray-100">Blog Posts (SSG)</h1>
+      <p className="text-gray-700 dark:text-gray-300 mb-8">
         This page uses Static Site Generation (SSG) to pre-render blog posts at build time.
       </p>
       <div className="grid gap-6">
         {posts.slice(0, 12).map((post) => {
           const category = getPostCategory(post.id)
           return (
-            <article key={post.id} className="bg-white border rounded-lg p-6 shadow-sm">
+            <article key={post.id} className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg p-6 shadow-sm">
               <div className="flex items-center gap-2 mb-2">
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${categoryColors[category]}`}>
                   {category.charAt(0).toUpperCase() + category.slice(1)}
                 </span>
               </div>
-              <h2 className="text-xl font-semibold mb-2">
+              <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
                 <Link 
                   href={`/blog/${post.id}`}
-                  className="text-blue-600 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
                 >
                   {post.title}
                 </Link>
               </h2>
-              <p className="text-gray-600 line-clamp-3">
+              <p className="text-gray-600 dark:text-gray-400 line-clamp-3">
                 {post.body.substring(0, 150)}...
               </p>
               <Link 
                 href={`/blog/${post.id}`}
-                className="text-blue-600 hover:underline text-sm mt-2 inline-block"
+                className="text-blue-600 dark:text-blue-400 hover:underline text-sm mt-2 inline-block"
               >
                 Read more →
               </Link>

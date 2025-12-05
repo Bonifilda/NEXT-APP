@@ -28,12 +28,22 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (mounted) {
       localStorage.setItem('theme', theme)
-      document.documentElement.classList.toggle('dark', theme === 'dark')
+      const html = document.documentElement
+      if (theme === 'dark') {
+        html.classList.add('dark')
+        html.style.colorScheme = 'dark'
+      } else {
+        html.classList.remove('dark')
+        html.style.colorScheme = 'light'
+      }
+      console.log('Theme changed to:', theme, 'HTML classes:', html.className)
     }
   }, [theme, mounted])
 
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light')
+    const newTheme = theme === 'light' ? 'dark' : 'light'
+    console.log('Toggling theme from', theme, 'to', newTheme)
+    setTheme(newTheme)
   }
 
   if (!mounted) {
@@ -42,9 +52,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className={theme}>
-        {children}
-      </div>
+      {children}
     </ThemeContext.Provider>
   )
 }
@@ -52,7 +60,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 export function useTheme() {
   const context = useContext(ThemeContext)
   if (!context) {
-    throw new Error('useTheme must be used within ThemeProvider')
+    // Return default values instead of throwing error during SSR
+    return {
+      theme: 'light' as Theme,
+      toggleTheme: () => {}
+    }
   }
   return context
 }

@@ -59,9 +59,9 @@ export default async function CategoryPage({
   if (!categoryMapping[category]) {
     return (
       <div className="text-center py-8">
-        <h1 className="text-2xl font-bold text-red-600 mb-4">Invalid Category</h1>
-        <p className="text-gray-500 mb-4">The category "{category}" does not exist.</p>
-        <Link href="/blog" className="text-blue-600 hover:underline">
+        <h1 className="text-2xl font-bold text-red-600 dark:text-red-400 mb-4">Invalid Category</h1>
+        <p className="text-gray-500 dark:text-gray-400 mb-4">The category "{category}" does not exist.</p>
+        <Link href="/blog" className="text-blue-600 dark:text-blue-400 hover:underline">
           ← Back to Blog
         </Link>
       </div>
@@ -73,33 +73,33 @@ export default async function CategoryPage({
 
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-6">{categoryTitle} Posts</h1>
-      <p className="text-gray-600 mb-8">
+      <h1 className="text-4xl font-bold mb-6 text-gray-900 dark:text-gray-100">{categoryTitle} Posts</h1>
+      <p className="text-gray-600 dark:text-gray-400 mb-8">
         Showing posts in the {categoryTitle.toLowerCase()} category.
       </p>
       
       {posts.length === 0 ? (
         <div className="text-center py-8">
-          <p className="text-gray-500">No posts found in this category.</p>
+          <p className="text-gray-500 dark:text-gray-400">No posts found in this category.</p>
         </div>
       ) : (
         <div className="grid gap-6">
           {posts.map((post) => (
-            <article key={post.id} className="bg-white border rounded-lg p-6 shadow-sm">
-              <h2 className="text-xl font-semibold mb-2">
+            <article key={post.id} className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-lg p-6 shadow-sm">
+              <h2 className="text-xl font-semibold mb-2 text-gray-900 dark:text-gray-100">
                 <Link 
                   href={`/blog/${post.id}`}
-                  className="text-blue-600 hover:underline"
+                  className="text-blue-600 dark:text-blue-400 hover:underline"
                 >
                   {post.title}
                 </Link>
               </h2>
-              <p className="text-gray-600 line-clamp-3">
+              <p className="text-gray-600 dark:text-gray-400 line-clamp-3">
                 {post.body.substring(0, 150)}...
               </p>
               <Link 
                 href={`/blog/${post.id}`}
-                className="text-blue-600 hover:underline text-sm mt-2 inline-block"
+                className="text-blue-600 dark:text-blue-400 hover:underline text-sm mt-2 inline-block"
               >
                 Read more →
               </Link>
