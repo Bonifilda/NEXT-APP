@@ -35,8 +35,8 @@ export default async function Blog() {
   
   return (
     <div>
-      <h1 className="text-4xl font-bold mb-6">Blog Posts (SSG)</h1>
-      <p className="text-gray-600 mb-8">
+      <h1 className="text-4xl text-black font-bold mb-6">Blog Posts (SSG)</h1>
+      <p className="text-black mb-8">
         This page uses Static Site Generation (SSG) to pre-render blog posts at build time.
       </p>
       <div className="grid gap-6">
