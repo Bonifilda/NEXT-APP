@@ -15,21 +15,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                const theme = localStorage.getItem('theme') || 
-                  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-                document.documentElement.classList.toggle('dark', theme === 'dark');
-              } catch (e) {}
-            `,
-          }}
-        />
-      </head>
       <body>
-        <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors">
+        <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
           <header className="bg-blue-600 dark:bg-blue-800 text-white p-4">
             <nav className="max-w-6xl mx-auto flex justify-between items-center">
               <h1 className="text-xl font-bold">Next.js work</h1>

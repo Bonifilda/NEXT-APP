@@ -7,11 +7,11 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const saved = localStorage.getItem('theme')
     const dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)
     setIsDark(dark)
     document.documentElement.classList.toggle('dark', dark)
-    setMounted(true)
   }, [])
 
   const toggle = () => {
@@ -22,7 +22,7 @@ export default function ThemeToggle() {
   }
 
   if (!mounted) {
-    return <button className="p-2 rounded-lg bg-gray-200" disabled>🌙</button>
+    return <div className="w-10 h-10"></div>
   }
 
   return (

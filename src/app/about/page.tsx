@@ -40,7 +40,6 @@ export default async function About() {
           This data is fetched using Server-Side Rendering (SSR)
         </p>
       </div>
-      </div>
-    
+    </div>
   )
 }
